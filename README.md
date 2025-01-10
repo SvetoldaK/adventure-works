@@ -22,3 +22,16 @@ SELECT CONCAT(ProductID, ': ', Name) AS ProductDescription FROM Production.Produ
 6. Напишите запрос, в котором подсчитывается количество дней между датой размещения заказа и датой его доставки, используя таблицу Sales.SalesOrderHeader. В вывод включите поля: SalesOrderID, OrderDate, ShipDate.
 
 SELECT SalesOrderID, OrderDate, ShipDate, DATEDIFF(DAY, OrderDate, ShipDate) AS DaysBetween FROM Sales.SalesOrderHeader;
+
+===
+
+7. Используя подзапрос, отобразите идендификатор и наименование продуктов из таблицы Production.Product, которые уже были заказаны (таблица Sales.SalesOrderDetail).
+
+SELECT prod.ProductID, prod.Name FROM Production.Product prod WHERE prod.ProductID IN ( 
+SELECT sod.ProductID FROM Sales.SalesOrderDetail sod);
+
+===
+
+8. Напишите запрос, который отображает количество заказов, размещенных в течении года, по каждому заказчику (таблица Sales.SalesOrderHeader). В вывод включите поля: CustomerID, общее количество заказов, год.
+
+SELECT CustomerID, COUNT(SalesOrderID) AS TotalOrders, YEAR(OrderDate) AS OrderYear FROM Sales.SalesOrderHeader GROUP BY CustomerID, YEAR(OrderDate);
