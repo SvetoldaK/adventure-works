@@ -1,3 +1,5 @@
+Выполняется на тестовой базе AdventureWorks2008 (<a href="https://docs.microsoft.com/ru-ru/sql/samples/adventureworks-install-configure?view=sql-server-ver15&tabs=ssms">ссылка</a>)
+
 1. **Напишите запрос, который отображает строки из таблицы Person.Person, измененные в период с 10.12.2000 по 31.12.2001. Выведите идентификатор сущности, поля с именами и дату модификации строки.** 
 ```
 SELECT BusinessEntityID, FirstName, LastName, ModifiedDate FROM Person.Person WHERE CAST(ModifiedDate as date) BETWEEN '2000-12-10' AND '2001-12-31';
